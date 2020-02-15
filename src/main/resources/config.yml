@@ -1,0 +1,3 @@
+android-stopped: '检测到机器人正在破坏禁止破坏的方块 %s, 已自动停止运行.'
+plugin-prefix: '&bSlimefunBlackList &r>'
+blacklist: []

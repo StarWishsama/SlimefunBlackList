@@ -1,0 +1,9 @@
+name: SlimefunBlackList
+version: ${project.version}
+main: io.github.starwishsama.slimefunblacklist.SlimefunBlackList
+api-version: 1.13
+depend: [Slimefun]
+
+commands:
+  sfblacklist:
+    aliases: sfbl
