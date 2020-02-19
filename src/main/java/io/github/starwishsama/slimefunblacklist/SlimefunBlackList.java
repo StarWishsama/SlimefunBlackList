@@ -1,8 +1,10 @@
 package io.github.starwishsama.slimefunblacklist;
 
 import io.github.starwishsama.slimefunblacklist.command.BlackListCommand;
+import io.github.starwishsama.slimefunblacklist.command.GetItemIDCommand;
 import io.github.starwishsama.slimefunblacklist.listeners.AndroidBreakListener;
 
+import io.github.starwishsama.slimefunblacklist.listeners.BlockBreakListener;
 import lombok.Getter;
 
 import org.bukkit.Bukkit;
@@ -17,9 +19,11 @@ public final class SlimefunBlackList extends JavaPlugin {
         if (getServer().getPluginManager().getPlugin("Slimefun") != null) {
             instance = this;
             getLogger().info("已检测到前置 Slimefun, 正在启用...");
-            Config.load();
+            ConfigSetup.load();
             new AndroidBreakListener(this);
+            new BlockBreakListener(this);
             Bukkit.getPluginCommand("sfblacklist").setExecutor(new BlackListCommand());
+            Bukkit.getPluginCommand("getsfid").setExecutor(new GetItemIDCommand());
         } else {
             getLogger().warning("插件需要前置 Slimefun 4 才能正常使用!");
             this.setEnabled(false);
@@ -29,6 +33,6 @@ public final class SlimefunBlackList extends JavaPlugin {
     @Override
     public void onDisable(){
         getLogger().info("正在保存配置文件...");
-        Config.save();
+        ConfigSetup.save();
     }
 }

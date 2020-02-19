@@ -1,8 +1,7 @@
 package io.github.starwishsama.slimefunblacklist.listeners;
 
-import io.github.starwishsama.slimefunblacklist.Config;
+import io.github.starwishsama.slimefunblacklist.PluginConstants;
 import io.github.starwishsama.slimefunblacklist.SlimefunBlackList;
-import io.github.starwishsama.slimefunblacklist.BlackList;
 import io.github.starwishsama.slimefunblacklist.utils.Utils;
 
 import io.github.thebusybiscuit.slimefun4.api.events.AndroidMineEvent;
@@ -24,13 +23,13 @@ public class AndroidBreakListener implements Listener {
     @EventHandler
     public void onAndroidBreak(AndroidMineEvent e){
         Block block = e.getBlock();
-        if (BlackList.isBlockAndroid(block.getType())){
+        if (Utils.isBlackListItem(block.getType())){
             e.setCancelled(true);
             BlockStorage.addBlockInfo(e.getAndroid().getBlock(), "paused", "true");
             String json = BlockStorage.getBlockInfoAsJson(e.getAndroid().getBlock());
             Player p = Bukkit.getPlayer(Utils.getOwnerByJson(json));
             if (p != null) {
-                p.sendMessage(Utils.color(Config.getPluginPrefix() + String.format(Config.getAndroidStopped(), block.getType().name())));
+                p.sendMessage(Utils.color(PluginConstants.getPluginPrefix() + PluginConstants.getAndroidStopped()));
                 SlimefunPlugin.getLocal().sendMessage(p, "android.stopped", true);
             }
         }
