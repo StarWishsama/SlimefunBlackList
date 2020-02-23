@@ -6,7 +6,7 @@
 
     <groupId>io.github.starwishsama.SlimefunBlackList</groupId>
     <artifactId>SlimefunBlackList</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0-RELEASE</version>
     <packaging>jar</packaging>
 
     <name>SlimefunBlackList</name>
@@ -101,6 +101,13 @@
                     <artifactId>bstats-bukkit</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.bekvon.bukkit</groupId>
+            <artifactId>residence</artifactId>
+            <version>4.8.8.2</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/Residence4.8.8.2.jar</systemPath>
         </dependency>
     </dependencies>
 </project>

@@ -4,6 +4,7 @@ author: StarWishsama
 main: io.github.starwishsama.slimefunblacklist.SlimefunBlackList
 api-version: 1.13
 depend: [Slimefun]
+softdepend: [Residence]
 
 commands:
   sfblacklist:

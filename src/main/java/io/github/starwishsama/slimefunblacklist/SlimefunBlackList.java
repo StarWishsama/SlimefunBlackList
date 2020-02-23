@@ -17,6 +17,11 @@ public final class SlimefunBlackList extends JavaPlugin {
     @Override
     public void onEnable() {
         if (getServer().getPluginManager().getPlugin("Slimefun") != null) {
+            if (getServer().getPluginManager().getPlugin("Residence") != null){
+                PluginConstants.setEnableResidence(true);
+            } else {
+                getLogger().warning("检测到领地插件未安装, 将自动禁用相关功能");
+            }
             instance = this;
             getLogger().info("已检测到前置 Slimefun, 正在启用...");
             ConfigSetup.load();

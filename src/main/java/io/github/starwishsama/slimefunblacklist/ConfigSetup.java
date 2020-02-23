@@ -18,14 +18,27 @@ public class ConfigSetup {
                 instance.getConfig().set("androidStopped", PluginConstants.getAndroidStopped());
                 instance.getConfig().set("blackList", PluginConstants.getBlacklist());
                 instance.getConfig().set("breakBlackListBlock", PluginConstants.getBreakBlackListBlock());
+                instance.getConfig().set("breakInResidence", PluginConstants.getBreakInResidence());
+                instance.getConfig().set("whiteListMode", PluginConstants.isWhiteListMode());
+                instance.getConfig().set("enableResidence", PluginConstants.isEnableResidence());
                 instance.getConfig().save(file);
-            } else {
+            }
+
+            // Update config
+            if (instance.getConfig().get("breakInResidence") == null) {
+                instance.getConfig().set("breakInResidence", PluginConstants.getBreakInResidence());
+                instance.getConfig().set("whiteListMode", PluginConstants.isWhiteListMode());
+                instance.getConfig().set("enableResidence", PluginConstants.isEnableResidence());
+            }
+            else {
                 instance.getConfig().load(file);
                 PluginConstants.setPluginPrefix(instance.getConfig().getString("pluginPrefix"));
                 PluginConstants.setAndroidStopped(instance.getConfig().getString("androidStopped"));
                 PluginConstants.setBlacklist(instance.getConfig().getStringList("blackList"));
                 PluginConstants.setBreakBlackListBlock(instance.getConfig().getString("breakBlackListBlock"));
+                PluginConstants.setBreakInResidence(instance.getConfig().getString("breakInResidence"));
             }
+
         } catch (IOException | InvalidConfigurationException e){
             instance.getLogger().warning("在生成新文件时遇到了问题: " + e);
             e.printStackTrace();
@@ -38,6 +51,9 @@ public class ConfigSetup {
             instance.getConfig().set("androidStopped", PluginConstants.getAndroidStopped());
             instance.getConfig().set("blackList", PluginConstants.getBlacklist());
             instance.getConfig().set("breakBlackListBlock", PluginConstants.getBreakBlackListBlock());
+            instance.getConfig().set("breakInResidence", PluginConstants.getBreakInResidence());
+            instance.getConfig().set("whiteListMode", PluginConstants.isWhiteListMode());
+            instance.getConfig().set("enableResidence", PluginConstants.isEnableResidence());
             instance.getConfig().save(file);
         } catch (IOException e){
             instance.getLogger().warning("在保存配置时遇到了问题: ");

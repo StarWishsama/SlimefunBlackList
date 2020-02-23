@@ -1,6 +1,5 @@
 package io.github.starwishsama.slimefunblacklist;
 
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,4 +19,13 @@ public class PluginConstants {
     @Setter
     @Getter
     private static String breakBlackListBlock = "这个方块不能用爆炸工具破坏!";
+    @Setter
+    @Getter
+    private static String breakInResidence = "你的机器人没有权限在该领地破坏放置方块!";
+    @Setter
+    @Getter
+    private static boolean whiteListMode = false;
+    @Setter
+    @Getter
+    private static boolean enableResidence = false;
 }
