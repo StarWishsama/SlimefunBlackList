@@ -5,12 +5,14 @@ import io.github.starwishsama.slimefunblacklist.command.GetItemIDCommand;
 import io.github.starwishsama.slimefunblacklist.listeners.AndroidBreakListener;
 
 import io.github.starwishsama.slimefunblacklist.listeners.BlockBreakListener;
+import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import lombok.Getter;
 
+import me.mrCookieSlime.Slimefun.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public final class SlimefunBlackList extends JavaPlugin {
+public final class SlimefunBlackList extends JavaPlugin implements SlimefunAddon {
     @Getter
     private static SlimefunBlackList instance;
 
@@ -29,6 +31,8 @@ public final class SlimefunBlackList extends JavaPlugin {
             new BlockBreakListener(this);
             Bukkit.getPluginCommand("sfblacklist").setExecutor(new BlackListCommand());
             Bukkit.getPluginCommand("getsfid").setExecutor(new GetItemIDCommand());
+
+            new Metrics(this, 6577);
         } else {
             getLogger().warning("插件需要前置 Slimefun 4 才能正常使用!");
             this.setEnabled(false);
@@ -39,5 +43,20 @@ public final class SlimefunBlackList extends JavaPlugin {
     public void onDisable(){
         getLogger().info("正在保存配置文件...");
         ConfigSetup.save();
+    }
+
+    @Override
+    public JavaPlugin getJavaPlugin() {
+        return this;
+    }
+
+    @Override
+    public String getBugTrackerURL() {
+        return "https://github.com/StarWishsama/SlimefunBlackList/issues";
+    }
+
+    @Override
+    public String getPluginVersion() {
+        return this.getDescription().getVersion();
     }
 }
