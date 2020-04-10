@@ -12,6 +12,8 @@ import me.mrCookieSlime.Slimefun.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.Objects;
+
 public final class SlimefunBlackList extends JavaPlugin implements SlimefunAddon {
     @Getter
     private static SlimefunBlackList instance;
@@ -29,8 +31,8 @@ public final class SlimefunBlackList extends JavaPlugin implements SlimefunAddon
             ConfigSetup.load();
             new AndroidBreakListener(this);
             new BlockBreakListener(this);
-            Bukkit.getPluginCommand("sfblacklist").setExecutor(new BlackListCommand());
-            Bukkit.getPluginCommand("getsfid").setExecutor(new GetItemIDCommand());
+            Objects.requireNonNull(Bukkit.getPluginCommand("sfblacklist")).setExecutor(new BlackListCommand());
+            Objects.requireNonNull(Bukkit.getPluginCommand("getsfid")).setExecutor(new GetItemIDCommand());
 
             new Metrics(this, 6577);
         } else {

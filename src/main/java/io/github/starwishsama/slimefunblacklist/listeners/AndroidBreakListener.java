@@ -34,10 +34,15 @@ public class AndroidBreakListener implements Listener {
             ClaimedResidence res = ResidenceApi.getResidenceManager().getByLoc(e.getBlock().getLocation());
             if (res != null && p != null){
                 ResidencePermissions perms = res.getPermissions();
-                if (perms.getOwnerUUID() != p.getUniqueId()
-                        || !perms.playerHas(p, Flags.build, true)
+                if (res.getOwnerUUID() == p.getUniqueId() || perms.playerHas(p, Flags.admin, true) || p.isOp()){
+                    return;
+                }
+
+                if (!perms.playerHas(p, Flags.build, true)
                         || !perms.playerHas(p, Flags.place, true)
                         || !perms.playerHas(p, Flags.destroy, true)){
+                    e.setCancelled(true);
+                    BlockStorage.addBlockInfo(e.getAndroid().getBlock(), "paused", "true");
                     p.sendMessage(Utils.color(PluginConstants.getPluginPrefix() + PluginConstants.getBreakInResidence()));
                     SlimefunPlugin.getLocal().sendMessage(p, "android.stopped", true);
                 }
