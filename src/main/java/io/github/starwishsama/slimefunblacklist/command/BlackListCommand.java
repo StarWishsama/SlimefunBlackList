@@ -26,6 +26,10 @@ public class BlackListCommand implements CommandExecutor {
                         Player p = (Player) sender;
                         Material item = p.getInventory().getItemInMainHand().getType();
                         switch (args[0].toLowerCase()) {
+                            case "mode":
+                                PluginConstants.setWhiteListMode(!PluginConstants.isWhiteListMode());
+                                sender.sendMessage(Utils.color(PluginConstants.getPluginPrefix() + "模式已修改为 " + (PluginConstants.isWhiteListMode() ? "白名单" : "黑名单")));
+                                break;
                             case "reload":
                                 ConfigSetup.load();
                                 sender.sendMessage(Utils.color(PluginConstants.getPluginPrefix() + " 重载配置文件成功!"));

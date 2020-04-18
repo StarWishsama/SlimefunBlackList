@@ -49,8 +49,8 @@ public class AndroidBreakListener implements Listener {
             }
         }
 
-        if (!PluginConstants.isWhiteListMode()) {
-            if (Utils.isBlackListItem(block.getType())) {
+        if (PluginConstants.isWhiteListMode()){
+            if (!Utils.isBlackListItem(block.getType())) {
                 e.setCancelled(true);
                 BlockStorage.addBlockInfo(e.getAndroid().getBlock(), "paused", "true");
                 if (p != null) {
@@ -59,7 +59,7 @@ public class AndroidBreakListener implements Listener {
                 }
             }
         } else {
-            if (!Utils.isBlackListItem(block.getType())) {
+            if (Utils.isBlackListItem(block.getType())) {
                 e.setCancelled(true);
                 BlockStorage.addBlockInfo(e.getAndroid().getBlock(), "paused", "true");
                 if (p != null) {
